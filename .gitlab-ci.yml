@@ -1,0 +1,18 @@
+image: node:22-bookworm-slim
+stages: [validate]
+validate:
+  stage: validate
+  before_script:
+    - apt-get update && apt-get install -y openssl ca-certificates
+    - npm ci
+    - npm run db:generate
+  script:
+    - npm run lint
+    - npm test
+    - npm run build
+  artifacts:
+    paths: [apps/web/dist/]
+    expire_in: 7 days
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH

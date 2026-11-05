@@ -1,0 +1,397 @@
+{
+  "brand": "sterk",
+  "tagline": "Jouw ritme. Jouw resultaat.",
+  "navigation": ["Overzicht", "Trainingsschema", "Eetschema", "Voortgang"],
+  "account": "ACCOUNT",
+  "settings": "Profiel & instellingen",
+  "support": "Hulp nodig?",
+  "supportText": "Kleine stappen. Groot verschil.",
+  "today": "Jouw overzicht",
+  "greeting": "Goedemorgen",
+  "intro": "Een nieuwe dag om sterker te worden. Je kunt dit.",
+  "demo": "Demomodus",
+  "demoText": "Je bekijkt voorbeeldgegevens. Maak een account om je eigen voortgang op te slaan.",
+  "start": "Aan de slag",
+  "week": "Deze week",
+  "dayNames": ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"],
+  "dayFull": [
+    "Maandag",
+    "Dinsdag",
+    "Woensdag",
+    "Donderdag",
+    "Vrijdag",
+    "Zaterdag",
+    "Zondag"
+  ],
+  "stats": [
+    "Trainingen deze week",
+    "Calorieën vandaag",
+    "Huidig gewicht",
+    "Huidige reeks"
+  ],
+  "days": "dagen",
+  "of": "van",
+  "goal": "doel",
+  "todayWorkout": "Tijd om sterker te worden",
+  "workoutSub": "Jouw training voor vandaag",
+  "upper": "Bovenlichaam",
+  "strength": "Krachttraining",
+  "exercises": "oefeningen",
+  "minutes": "min",
+  "viewWorkout": "Bekijk training",
+  "restDay": "Herstel is ook vooruitgang",
+  "restText": "Vandaag staat actief herstel op het programma. Een wandeling of rustige mobiliteit is genoeg.",
+  "nutrition": "Voeding vandaag",
+  "viewPlan": "Bekijk eetschema",
+  "consumed": "gegeten",
+  "remaining": "over",
+  "macros": ["Eiwitten", "Koolhydraten", "Vetten"],
+  "meals": ["Ontbijt", "Lunch", "Avondeten", "Tussendoortje"],
+  "mealNames": [
+    "Kwark met havermout & blauwe bessen",
+    "Volkoren wrap met kip & avocado",
+    "Zalm met rijst & groene groenten",
+    "Appel met ongezouten amandelen"
+  ],
+  "progress": "Elke stap telt",
+  "progressSub": "Je gewicht over de afgelopen weken",
+  "viewProgress": "Alle voortgang",
+  "weight": "Gewicht",
+  "target": "Doelgewicht",
+  "coach": "Jouw persoonlijke coach",
+  "coachTitle": "Sterker worden begint met een plan dat bij je past.",
+  "coachText": "Pas je schema aan op jouw energie, voorkeuren en doelen.",
+  "adjust": "Pas mijn schema aan",
+  "weekOverview": "Jouw week in beweging",
+  "complete": "Afgerond",
+  "scheduled": "Gepland",
+  "rest": "Rustdag",
+  "tip": "GOED OM TE WETEN",
+  "tipTitle": "Consistentie wint van perfectie.",
+  "tipText": "Een korte training is beter dan geen training. Blijf in beweging, op jouw manier.",
+  "footer": "Elke dag een beetje sterker.",
+  "disclaimer": "Geen medisch advies. Overleg bij blessures, zwangerschap of medische klachten met een deskundige. Dit platform is bedoeld voor volwassenen.",
+  "save": "Opslaan",
+  "saved": "Opgeslagen",
+  "cancel": "Annuleren",
+  "close": "Sluiten",
+  "error": "Er ging iets mis. Probeer het opnieuw.",
+  "loading": "Even geduld…",
+  "login": "Inloggen",
+  "register": "Account maken",
+  "logout": "Uitloggen",
+  "name": "Voornaam",
+  "email": "E-mailadres",
+  "password": "Wachtwoord",
+  "forgot": "Wachtwoord vergeten?",
+  "reset": "Nieuw wachtwoord instellen",
+  "forgotSent": "Als dit adres bekend is, ontvang je een e-mail met een herstellink.",
+  "verifySent": "Controleer je inbox om je e-mailadres te bevestigen.",
+  "verified": "Je e-mailadres is bevestigd. Je kunt nu inloggen.",
+  "authIntro": "Bouw aan jouw sterkste versie.",
+  "authSub": "Training, voeding en inzicht. Helemaal afgestemd op jou.",
+  "wizardTitle": "Vertel ons wat bij je past",
+  "wizardSteps": ["Over jou", "Jouw training", "Jouw voeding"],
+  "next": "Volgende",
+  "back": "Vorige",
+  "generate": "Maak mijn persoonlijke schema",
+  "generating": ["Profiel analyseren", "Macro’s berekenen", "Schema opstellen"],
+  "fields": {
+    "age": "Leeftijd",
+    "sex": "Geslacht voor de energieformule",
+    "height": "Lengte (cm)",
+    "weight": "Gewicht (kg)",
+    "targetWeight": "Doelgewicht (kg)",
+    "goal": "Jouw doel",
+    "level": "Ervaringsniveau",
+    "days": "Trainingsdagen per week",
+    "minutes": "Tijd per training (min)",
+    "equipment": "Beschikbare apparatuur",
+    "injuries": "Blessures en beperkingen",
+    "diet": "Dieetvoorkeuren",
+    "allergies": "Allergieën",
+    "budget": "Dagbudget voor voeding (€)",
+    "cookingTime": "Kooktijd per maaltijd (min)"
+  },
+  "options": {
+    "male": "Man",
+    "female": "Vrouw",
+    "lose": "Afvallen",
+    "gain": "Spiermassa opbouwen",
+    "maintain": "Op gewicht blijven",
+    "fitness": "Conditie verbeteren",
+    "beginner": "Beginner",
+    "intermediate": "Enige ervaring",
+    "advanced": "Gevorderd",
+    "gym": "Sportschool",
+    "home": "Thuis met gewichten",
+    "bodyweight": "Eigen lichaamsgewicht"
+  },
+  "validation": "Controleer de ingevulde waarden. De intake is bedoeld voor volwassenen vanaf 18 jaar.",
+  "workoutTitle": "Jouw trainingsschema",
+  "workoutIntro": "Een helder plan. Jij hoeft alleen de eerste stap te zetten.",
+  "sets": "sets",
+  "reps": "herhalingen",
+  "restSeconds": "seconden rust",
+  "finish": "Training afronden",
+  "finished": "Goed gedaan! Je training is afgerond.",
+  "nutritionIntro": "Eet gevarieerd, voel je goed en werk aan je doel.",
+  "groceries": "Boodschappenlijst",
+  "progressIntro": "Kijk eens hoe ver je al bent gekomen.",
+  "log": "Voortgang toevoegen",
+  "waist": "Taille (cm)",
+  "photo": "Voortgangsfoto",
+  "notes": "Notities",
+  "history": "Jouw meetmomenten",
+  "empty": "Nog geen gegevens. Voeg je eerste meetmoment toe.",
+  "accountTitle": "Jouw profiel",
+  "theme": "Donkere modus",
+  "export": "Exporteer mijn gegevens",
+  "delete": "Verwijder mijn account",
+  "deleteText": "Hiermee verwijder je je account en alle bijbehorende gegevens definitief. Typ VERWIJDER om te bevestigen.",
+  "feedback": "Wat wil je aanpassen?",
+  "feedbackHint": "Bijvoorbeeld: de training is te zwaar, of ik eet liever geen vis.",
+  "regenerate": "Schema opnieuw maken",
+  "needsAccount": "Maak een account om een persoonlijk schema te genereren.",
+  "aiMissing": "Genereren is tijdelijk niet beschikbaar. Je profiel is opgeslagen; probeer het later opnieuw.",
+  "admin": "Beheer",
+  "users": "Gebruikers",
+  "library": "Oefeningenbibliotheek",
+  "usage": "AI-generaties",
+  "noPlan": "Je hebt nog geen persoonlijk schema. Rond eerst je intake af.",
+  "landingTitle": "Jouw sterkste versie begint hier.",
+  "landingText": "Persoonlijke training en voeding, afgestemd op jouw leven. Eén helder plan om elke dag vooruit te gaan.",
+  "how": "Zo werkt Sterk",
+  "howSteps": ["Vertel over jezelf", "Ontvang jouw plan", "Maak vooruitgang"],
+  "features": [
+    "Training op jouw niveau",
+    "Voeding die bij je past",
+    "Inzicht in je vooruitgang"
+  ],
+  "pricing": "Jouw plan, jouw tempo",
+  "pricingText": "Maak een account en ontdek jouw persoonlijke overzicht. Er is momenteel geen betaald abonnement.",
+  "startIntake": "Start mijn intake",
+  "overview": "Naar mijn overzicht",
+  "version": "Schemaversie",
+  "feedbackRequired": "Beschrijf eerst wat je wilt aanpassen.",
+  "noTestimonials": "Gebouwd rondom jouw dagelijkse ritme.",
+  "trainingTypes": [
+    "Bovenlichaam",
+    "Onderlichaam",
+    "Actief herstel",
+    "Bovenlichaam",
+    "Onderlichaam",
+    "Rustdag",
+    "Rustdag"
+  ],
+  "copy": {
+    "personal_coaching": "PERSOONLIJKE COACHING",
+    "mijn_omgeving": "Mijn omgeving",
+    "meldingen": "Meldingen",
+    "sterk": "Sterk",
+    "minimaal_12_tekens": "Minimaal 12 tekens.",
+    "week": "Week ",
+    "set": "Set ",
+    "kg": " kg",
+    "g": " g",
+    "kcal": " kcal ",
+    "cm": " cm",
+    "kg_2": " (kg)",
+    "verwijder": "VERWIJDER",
+    "user": "user",
+    "admin": "admin",
+    "tokens": "Tokens:",
+    "facturatie_en_actuele_kosten_vind_je_in_de_anthropic_co": ". Facturatie en actuele kosten vind je in de Anthropic-console.",
+    "oefening_toevoegen_of_bijwerken": "Oefening toevoegen of bijwerken",
+    "jouw_plan_helemaal_persoonlijk": "Jouw plan. Helemaal persoonlijk.",
+    "elke_dag_een_beetje_sterker": "ELKE DAG EEN BEETJE STERKER",
+    "een_plan_dat_bij_je_past": "EEN PLAN DAT BIJ JE PAST",
+    "zo_kan_jouw_week_eruitzien": "ZO KAN JOUW WEEK ERUITZIEN",
+    "3_sets_10_12_herhalingen": "3 sets · 10–12 herhalingen",
+    "voorbeeldschema_jouw_persoonlijke_schema_wordt_afgestem": "Voorbeeldschema. Jouw persoonlijke schema wordt afgestemd op je intake.",
+    "sterk_2": "Sterk.",
+    "jouw_persoonlijke_coach": "JOUW PERSOONLIJKE COACH",
+    "build_yourself": "WERK AAN JEZELF",
+    "accountName": "Jouw account",
+    "personalProfile": "Persoonlijk profiel",
+    "noNotifications": "Je bent helemaal bij. Er zijn geen nieuwe meldingen.",
+    "weekGoal": "Op weg naar je weekdoel",
+    "keepRhythm": "Blijf je goede ritme volgen",
+    "confirmEmail": "E-mailadres bevestigen",
+    "photoError": "Kies een JPG-, PNG- of WebP-afbeelding van maximaal 4 MB.",
+    "caloriesLabel": "Calorie?n",
+    "confirmed": "Bevestigd",
+    "unconfirmed": "Onbevestigd",
+    "exerciseName": "Naam",
+    "muscle": "Spiergroep",
+    "equipmentLabel": "Apparatuur",
+    "instructions": "Instructies"
+  },
+  "demoPlan": {
+    "workout": [
+      {
+        "week": 1,
+        "days": [
+          {
+            "name": "Bovenlichaam",
+            "exercises": [
+              {
+                "name": "Bankdrukken met halter",
+                "sets": 3,
+                "reps": "8–10",
+                "rest": 90,
+                "muscle": "Borst",
+                "notes": "Beweeg rustig en gecontroleerd."
+              },
+              {
+                "name": "Lat pulldown",
+                "sets": 3,
+                "reps": "10–12",
+                "rest": 60,
+                "muscle": "Rug",
+                "notes": "Trek je schouderbladen naar beneden."
+              },
+              {
+                "name": "Schouderdrukken met dumbbells",
+                "sets": 3,
+                "reps": "10–12",
+                "rest": 60,
+                "muscle": "Schouders",
+                "notes": "Houd je romp stabiel."
+              },
+              {
+                "name": "Zittend roeien",
+                "sets": 3,
+                "reps": "10–12",
+                "rest": 60,
+                "muscle": "Rug",
+                "notes": "Houd je rug neutraal."
+              },
+              {
+                "name": "Biceps curl met dumbbells",
+                "sets": 3,
+                "reps": "12",
+                "rest": 45,
+                "muscle": "Biceps",
+                "notes": "Laat de gewichten langzaam zakken."
+              },
+              {
+                "name": "Triceps pushdown",
+                "sets": 3,
+                "reps": "12",
+                "rest": 45,
+                "muscle": "Triceps",
+                "notes": "Houd je ellebogen naast je lichaam."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "meals": [
+      {
+        "day": "Vandaag",
+        "meals": [
+          {
+            "name": "Kwark met havermout en blauwe bessen",
+            "ingredients": [
+              {
+                "name": "Magere kwark",
+                "grams": 250
+              },
+              {
+                "name": "Havermout",
+                "grams": 60
+              },
+              {
+                "name": "Blauwe bessen",
+                "grams": 80
+              }
+            ],
+            "kcal": 420,
+            "protein": 35,
+            "carbs": 53,
+            "fat": 7
+          },
+          {
+            "name": "Volkoren wrap met kip en avocado",
+            "ingredients": [
+              {
+                "name": "Volkoren wraps",
+                "grams": 120
+              },
+              {
+                "name": "Kipfilet",
+                "grams": 150
+              },
+              {
+                "name": "Avocado",
+                "grams": 70
+              }
+            ],
+            "kcal": 580,
+            "protein": 42,
+            "carbs": 55,
+            "fat": 21
+          },
+          {
+            "name": "Zalm met rijst en broccoli",
+            "ingredients": [
+              {
+                "name": "Zalm",
+                "grams": 150
+              },
+              {
+                "name": "Zilvervliesrijst (droog)",
+                "grams": 90
+              },
+              {
+                "name": "Broccoli",
+                "grams": 200
+              }
+            ],
+            "kcal": 720,
+            "protein": 45,
+            "carbs": 80,
+            "fat": 24
+          },
+          {
+            "name": "Appel met amandelen",
+            "ingredients": [
+              {
+                "name": "Appel",
+                "grams": 150
+              },
+              {
+                "name": "Ongezouten amandelen",
+                "grams": 25
+              }
+            ],
+            "kcal": 230,
+            "protein": 6,
+            "carbs": 24,
+            "fat": 14
+          }
+        ]
+      }
+    ],
+    "groceries": [
+      "Magere kwark — 250 g",
+      "Havermout — 60 g",
+      "Blauwe bessen — 80 g",
+      "Volkoren wraps — 120 g",
+      "Kipfilet — 150 g",
+      "Avocado — 70 g",
+      "Zalm — 150 g",
+      "Zilvervliesrijst — 90 g",
+      "Broccoli — 200 g",
+      "Appel — 150 g",
+      "Ongezouten amandelen — 25 g"
+    ]
+  },
+  "examples": [
+    "Bankdrukken met halter",
+    "Lat pulldown",
+    "Schouderdrukken met dumbbells"
+  ]
+}

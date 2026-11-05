@@ -1,0 +1,232 @@
+generator client {
+ provider = "prisma-client-js"
+}
+datasource db {
+ provider = "postgresql"
+ url = env("DATABASE_URL")
+}
+model User {
+ id String @id @default(cuid())
+ email String @unique
+ name String
+ password String
+ role String @default("user")
+ verified Boolean @default(false)
+ createdAt DateTime @default(now())
+ profile Profile?
+ tokens RefreshToken[]
+ actions ActionToken[]
+ generations AIGeneration[]
+ workouts WorkoutPlan[]
+ meals MealPlan[]
+ progress ProgressLog[]
+ workoutLogs WorkoutLog[]
+ mealLogs MealLog[]
+}
+model Profile {
+ id String @id @default(cuid())
+ userId String @unique
+ user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+ data Json
+ goals Goal[]
+ preferences DietaryPreference[]
+ equipment Equipment[]
+ injuries Injury[]
+}
+model Goal {
+ id String @id @default(cuid())
+ profileId String
+ profile Profile @relation(fields:[profileId],references:[id],onDelete:Cascade)
+ type String
+ target Float
+ @@index([profileId])
+}
+model DietaryPreference {
+ id String @id @default(cuid())
+ profileId String
+ profile Profile @relation(fields:[profileId],references:[id],onDelete:Cascade)
+ name String
+ @@unique([profileId,name])
+}
+model Equipment {
+ id String @id @default(cuid())
+ profileId String
+ profile Profile @relation(fields:[profileId],references:[id],onDelete:Cascade)
+ name String
+ @@unique([profileId,name])
+}
+model Injury {
+ id String @id @default(cuid())
+ profileId String
+ profile Profile @relation(fields:[profileId],references:[id],onDelete:Cascade)
+ description String
+ @@index([profileId])
+}
+model Exercise {
+ id String @id @default(cuid())
+ name String @unique
+ muscle String
+ equipment String
+ instructions String
+ workouts WorkoutExercise[]
+}
+model WorkoutPlan {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ version Int
+ createdAt DateTime @default(now())
+ weeks WorkoutWeek[]
+ @@unique([userId,version])
+}
+model WorkoutWeek {
+ id String @id @default(cuid())
+ planId String
+ plan WorkoutPlan @relation(fields:[planId],references:[id],onDelete:Cascade)
+ number Int
+ days WorkoutDay[]
+ @@unique([planId,number])
+}
+model WorkoutDay {
+ id String @id @default(cuid())
+ weekId String
+ week WorkoutWeek @relation(fields:[weekId],references:[id],onDelete:Cascade)
+ name String
+ position Int
+ exercises WorkoutExercise[]
+ @@unique([weekId,position])
+}
+model WorkoutExercise {
+ id String @id @default(cuid())
+ dayId String
+ day WorkoutDay @relation(fields:[dayId],references:[id],onDelete:Cascade)
+ exerciseId String?
+ exercise Exercise? @relation(fields:[exerciseId],references:[id])
+ name String
+ sets Int
+ reps String
+ rest Int
+ muscle String
+ notes String
+ position Int
+ @@unique([dayId,position])
+}
+model MealPlan {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ version Int
+ groceries Json
+ days MealDay[]
+ @@unique([userId,version])
+}
+model MealDay {
+ id String @id @default(cuid())
+ planId String
+ plan MealPlan @relation(fields:[planId],references:[id],onDelete:Cascade)
+ name String
+ position Int
+ meals Meal[]
+ @@unique([planId,position])
+}
+model Meal {
+ id String @id @default(cuid())
+ dayId String
+ day MealDay @relation(fields:[dayId],references:[id],onDelete:Cascade)
+ name String
+ kcal Float
+ protein Float
+ carbs Float
+ fat Float
+ items MealItem[]
+ @@index([dayId])
+}
+model MealItem {
+ id String @id @default(cuid())
+ mealId String
+ meal Meal @relation(fields:[mealId],references:[id],onDelete:Cascade)
+ foodId String?
+ food Food? @relation(fields:[foodId],references:[id])
+ name String
+ grams Float
+ @@index([mealId])
+}
+model Food {
+ id String @id @default(cuid())
+ name String @unique
+ kcal Float
+ protein Float
+ carbs Float
+ fat Float
+ items MealItem[]
+}
+model ProgressLog {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ date DateTime @default(now())
+ weight Float
+ waist Float?
+ photo String?
+ notes String @default("")
+ @@index([userId,date])
+}
+model WorkoutLog {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ date DateTime @default(now())
+ dayKey String
+ completed Boolean @default(false)
+ sets SetLog[]
+ @@unique([userId,dayKey])
+}
+model SetLog {
+ id String @id @default(cuid())
+ logId String
+ log WorkoutLog @relation(fields:[logId],references:[id],onDelete:Cascade)
+ exercise String
+ number Int
+ reps Int
+ weight Float
+ @@unique([logId,exercise,number])
+}
+model MealLog {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ dayKey String
+ mealKey String
+ @@unique([userId,dayKey,mealKey])
+}
+model AIGeneration {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ prompt String
+ response Json?
+ model String
+ tokens Int @default(0)
+ status String
+ version Int
+ createdAt DateTime @default(now())
+ @@unique([userId,version])
+ @@index([userId,createdAt])
+}
+model RefreshToken {
+ id String @id @default(cuid())
+ hash String @unique
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ expiresAt DateTime
+ @@index([userId])
+}
+model ActionToken {
+ id String @id @default(cuid())
+ hash String @unique
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ kind String
+ expiresAt DateTime
+ @@index([userId])
+}
