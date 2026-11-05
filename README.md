@@ -1,4 +1,4 @@
-# Sterk
+﻿# Sterk
 
 Nederlandstalig platform voor persoonlijke training, voeding en voortgang. React 19 + TypeScript + Vite, Express, Prisma/PostgreSQL en Claude via de backend.
 
