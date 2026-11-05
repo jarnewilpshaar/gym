@@ -117,7 +117,7 @@ function AuthPage() {
           {t.brand}.
         </Link>
         <div>
-          <h1>{t.authIntro}</h1>
+          <p className="auth-headline">{t.authIntro}</p>
           <p>{t.authSub}</p>
         </div>
         <Dumbbell strokeWidth={1} />

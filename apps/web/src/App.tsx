@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState, useRef } from "react";
 import {
   Link,
   NavLink,
@@ -34,6 +34,40 @@ function Shell() {
   const location = useLocation();
   const { user, booting, notify } = useStore();
   const [menu, setMenu] = useState(false);
+  const sidebarRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!menu) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const sidebar = sidebarRef.current;
+    sidebar?.querySelector<HTMLButtonElement>(".mobile-close")?.focus();
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMenu(false);
+        return;
+      }
+      if (event.key !== "Tab" || !sidebar) return;
+      const elements = [
+        ...sidebar.querySelectorAll<HTMLElement>(
+          'button, a[href], input, select, textarea, [tabindex="0"]',
+        ),
+      ].filter((el) => el.offsetParent !== null);
+      const first = elements[0],
+        last = elements.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", keydown);
+    return () => {
+      document.removeEventListener("keydown", keydown);
+      previous?.focus();
+    };
+  }, [menu]);
   const [dark, setDark] = useState(
     () => localStorage.getItem("sterk-theme") === "dark",
   );
@@ -63,7 +97,13 @@ function Shell() {
       <a className="skip-link" href="#main">
         {t.overview}
       </a>
-      <aside className={`sidebar ${menu ? "open" : ""}`}>
+      <aside
+        ref={sidebarRef}
+        className={`sidebar ${menu ? "open" : ""}`}
+        role={menu ? "dialog" : undefined}
+        aria-modal={menu ? true : undefined}
+        aria-label={t.navigation[0]}
+      >
         <Link className="logo" to="/welkom">
           <span className="logo-mark">
             <Sprout size={25} />

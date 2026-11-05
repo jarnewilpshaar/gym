@@ -14,6 +14,7 @@
   --muted: #82877f;
   --line: #e8ebe5;
   --accent: #597b42;
+  --button-bg: #597b42;
   --soft: #edf2e8;
   --z-content: 0;
   --z-sticky: 10;
@@ -65,7 +66,7 @@ button {
   border: 0;
   border-radius: 9px;
   padding: 12px 18px;
-  background: var(--accent);
+  background: var(--button-bg);
   color: white;
 }
 h1,
@@ -127,6 +128,7 @@ html {
   overflow-x: clip;
 }
 body.dark {
+  --accent: #a4c58c;
   --surface: #222b25;
   --muted: #a8b2a6;
   --line: #354037;
@@ -462,7 +464,7 @@ button:active,
   white-space: nowrap;
 }
 .button {
-  background: var(--accent);
+  background: var(--button-bg);
   color: white;
 }
 .outline-button {
@@ -1179,7 +1181,7 @@ button:active,
   position: fixed;
   top: -60px;
   left: 20px;
-  background: var(--accent);
+  background: var(--button-bg);
   color: white;
   padding: 12px;
   z-index: 50;
@@ -1305,7 +1307,7 @@ button:active,
   font-size: 11px;
 }
 .tabs button.active {
-  background: var(--accent);
+  background: var(--button-bg);
   color: white;
 }
 .stack {
@@ -1499,7 +1501,7 @@ button:active,
 .auth-visual .logo {
   font-size: 35px;
 }
-.auth-visual h1 {
+.auth-visual .auth-headline {
   font-size: 55px;
   line-height: 1.2;
   max-width: 420px;
@@ -1942,7 +1944,7 @@ button:active,
   .auth-visual {
     padding: 35px;
   }
-  .auth-visual h1 {
+  .auth-visual .auth-headline {
     font-size: 42px;
   }
   .landing-hero h1 {
@@ -2020,7 +2022,7 @@ button:active,
     min-height: 240px;
     padding: 25px;
   }
-  .auth-visual h1 {
+  .auth-visual .auth-headline {
     font-size: 33px;
     margin: 30px 0 10px;
     max-width: none;
@@ -2294,4 +2296,36 @@ button:active,
 }
 .spinner {
   animation: spin 1.5s linear infinite;
+}
+@media (max-width: 520px) {
+  .button,
+  .outline-button,
+  .light-button {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+  .settings-row {
+    flex-wrap: wrap;
+  }
+  .progress-top {
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+}
+@media (max-width: 760px) {
+  .sidebar {
+    visibility: hidden;
+  }
+  .sidebar.open {
+    visibility: visible;
+  }
+}
+
+.auth-visual .auth-headline {
+  color: #edf3e7;
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  letter-spacing: -1.4px;
+  line-height: 1.2;
 }

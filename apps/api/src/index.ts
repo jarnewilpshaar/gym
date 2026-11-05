@@ -60,9 +60,10 @@ app.use(
   "/api",
   rateLimit({
     windowMs: 60000,
-    limit: 120,
+    limit: Number(process.env.API_RATE_LIMIT ?? 120),
     standardHeaders: "draft-8",
     legacyHeaders: false,
+    message: { error: "Te veel verzoeken. Probeer het later opnieuw." },
   }),
 );
 app.use("/api", (req, res, next) => {
@@ -83,6 +84,9 @@ const authLimit = rateLimit({
   limit: 15,
   standardHeaders: "draft-8",
   legacyHeaders: false,
+  message: {
+    error: "Te veel inlogpogingen. Probeer het over een kwartier opnieuw.",
+  },
 });
 function fail(message: string, status = 400): never {
   throw Object.assign(new Error(message), { status });
@@ -92,7 +96,7 @@ function requireConfig() {
     fail("De server is nog niet geconfigureerd. Volg de README.", 503);
 }
 type AuthRequest = Request & { userId?: string };
-function auth(req: AuthRequest, _res: Response, next: NextFunction) {
+async function auth(req: AuthRequest, _res: Response, next: NextFunction) {
   try {
     requireConfig();
     const payload = jwt.verify(
@@ -101,6 +105,16 @@ function auth(req: AuthRequest, _res: Response, next: NextFunction) {
     ) as jwt.JwtPayload;
     req.userId = payload.sub;
     if (!req.userId) fail("Log opnieuw in.", 401);
+    const activeSession =
+      typeof payload.sid === "string"
+        ? await db.refreshToken.findUnique({ where: { id: payload.sid } })
+        : null;
+    if (
+      !activeSession ||
+      activeSession.userId !== req.userId ||
+      activeSession.expiresAt < new Date()
+    )
+      fail("Log opnieuw in.", 401);
     next();
   } catch {
     next(Object.assign(new Error("Log opnieuw in."), { status: 401 }));
@@ -109,7 +123,7 @@ function auth(req: AuthRequest, _res: Response, next: NextFunction) {
 async function session(res: Response, userId: string) {
   requireConfig();
   const refresh = token();
-  await db.refreshToken.create({
+  const activeSession = await db.refreshToken.create({
     data: {
       hash: hash(refresh),
       userId,
@@ -118,7 +132,10 @@ async function session(res: Response, userId: string) {
   });
   res.cookie(
     "access",
-    jwt.sign({}, secret!, { subject: userId, expiresIn: "15m" }),
+    jwt.sign({ sid: activeSession.id }, secret!, {
+      subject: userId,
+      expiresIn: "15m",
+    }),
     { ...cookieOptions, maxAge: 15 * 60000 },
   );
   res.cookie("refresh", refresh, { ...cookieOptions, maxAge: 30 * 86400000 });
@@ -279,7 +296,13 @@ app.get("/api/plan", auth, async (req: AuthRequest, res) => {
 app.post(
   "/api/generate",
   auth,
-  rateLimit({ windowMs: 60000, limit: 2 }),
+  rateLimit({
+    windowMs: 60000,
+    limit: 2,
+    message: {
+      error: "Wacht een minuut voordat je opnieuw een schema aanvraagt.",
+    },
+  }),
   async (req: AuthRequest, res) => {
     if (!process.env.ANTHROPIC_API_KEY)
       fail("AI-generatie is nog niet geconfigureerd.", 503);
@@ -593,6 +616,13 @@ app.post("/api/admin/exercises", async (req, res) => {
   );
 });
 app.use((error: unknown, _req: Request, res: Response, _next: NextFunction) => {
+  if (error instanceof Anthropic.APIError) {
+    res.status(503).json({
+      error:
+        "De AI-dienst is tijdelijk niet beschikbaar. Je vorige schema blijft bewaard.",
+    });
+    return;
+  }
   if (error instanceof z.ZodError) {
     res.status(400).json({
       error: "Controleer de ingevulde gegevens.",
@@ -612,7 +642,9 @@ app.use((error: unknown, _req: Request, res: Response, _next: NextFunction) => {
   });
 });
 const server = app.listen(Number(process.env.PORT ?? 3001), "127.0.0.1", () =>
-  process.stdout.write("Sterk API: http://127.0.0.1:3001\n"),
+  process.stdout.write(
+    `Sterk API: http://127.0.0.1:${process.env.PORT ?? 3001}\n`,
+  ),
 );
 process.on("SIGTERM", () => {
   server.close();

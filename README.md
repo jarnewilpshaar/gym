@@ -56,6 +56,20 @@ npm test
 npm run build
 ```
 
+De integratietests starten een echte, geïsoleerde PostgreSQL-server en een lokale SMTP-opvanger. Docker is daarvoor niet nodig. Er worden alleen fictieve accounts gebruikt, geen externe e-mails verstuurd. Databasebestanden blijven voor diagnose in de genegeerde `.test-data`-map; alle testprocessen stoppen na afloop.
+
+```sh
+npm run test:integration
+# Eenmalig de testbrowser installeren (PowerShell):
+$env:PLAYWRIGHT_BROWSERS_PATH = "$PWD/.test-data/browsers"
+npx playwright install chromium
+npm run test:mobile
+# Met ANTHROPIC_API_KEY in de genegeerde .env en voldoende API-tegoed:
+npm run test:claude
+```
+
+`test:integration` test het echte Claude SDK-contract met een lokale HTTP-testserver, inclusief ongeldige JSON, retry, versieopslag en quota. `test:claude` voegt een echte provider-aanvraag toe en kan API-tegoed kosten. Het verstuurt uitsluitend een fictief profiel. `test:mobile` draait de ingelogde en openbare schermen op 320, 375, 768 en 1440 pixels. Rapporten en schermafbeeldingen staan in de genegeerde `test-results`- en `playwright-report`-mappen.
+
 `npm run db:deploy` past de meegeleverde migratie toe. Nieuwe schemawijzigingen maak je met `npm run db:migrate -- --name beschrijving`. Seeden is herhaalbaar en maakt geen accounts met standaardwachtwoorden. Geef een eigen, geverifieerd account via de database de rol `admin` om beheer te openen.
 
 ## Veiligheid en grenzen

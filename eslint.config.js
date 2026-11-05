@@ -2,7 +2,17 @@ import js from "@eslint/js";
 import ts from "typescript-eslint";
 import globals from "globals";
 export default ts.config(
-  { ignores: ["node_modules/**", ".npm-cache/**", "build/**", "**/dist/**"] },
+  {
+    ignores: [
+      "node_modules/**",
+      ".npm-cache/**",
+      "build/**",
+      "**/dist/**",
+      ".test-data/**",
+      "test-results/**",
+      "playwright-report/**",
+    ],
+  },
   js.configs.recommended,
   ...ts.configs.recommended,
   {
