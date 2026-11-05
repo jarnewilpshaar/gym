@@ -24,6 +24,7 @@ import {
 import { CountUp, Reveal } from "./components/motion";
 import { calculateNutrition } from "../../../packages/shared/schema";
 import { format, t, useStore } from "./lib";
+import { localDay, summarizeActivity } from "../../../packages/shared/activity";
 export function WeightChart({ large = false }: { large?: boolean }) {
   const { progress } = useStore();
   const reduced = useReducedMotion();
@@ -103,11 +104,8 @@ export default function Dashboard() {
     0,
   );
   const current = progress.at(-1)?.weight ?? profile.weight;
-  const done = user
-    ? activity.workouts.filter((w) => w.completed).length
-    : demoWorkout
-      ? 3
-      : 2;
+  const summary = summarizeActivity(activity.workouts);
+  const done = user ? summary.weekCount : demoWorkout ? 3 : 2;
   const date = new Date();
   const monday = (date.getDay() + 6) % 7;
   return (
@@ -163,7 +161,7 @@ export default function Dashboard() {
           },
           {
             icon: Flame,
-            value: user ? 0 : 5,
+            value: user ? summary.streak : 5,
             suffix: t.days,
             sub: t.copy.keepRhythm,
             color: "purple",
@@ -259,9 +257,20 @@ export default function Dashboard() {
                     ).getDate()}
                   </strong>
                   <span
-                    className={`day-indicator ${[0, 1, 3, 4].includes(i) ? "training" : ""}`}
+                    className={`day-indicator ${[0, 1, 3, 4].includes(i) ? "training" : ""} ${(!user && i < 2) || (user && summary.dates.has(localDay(new Date(date.getFullYear(), date.getMonth(), date.getDate() - monday + i, 12)))) ? "is-complete" : ""}`}
                   >
-                    {i < 2 ? (
+                    {(!user && i < 2) ||
+                    (user &&
+                      summary.dates.has(
+                        localDay(
+                          new Date(
+                            date.getFullYear(),
+                            date.getMonth(),
+                            date.getDate() - monday + i,
+                            12,
+                          ),
+                        ),
+                      )) ? (
                       <Check size={12} />
                     ) : i === 3 || i === 4 ? (
                       <Dumbbell size={12} />

@@ -1,3 +1,4 @@
+import { localDay } from "../../../packages/shared/activity";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -392,7 +393,7 @@ function Training() {
     setWeights({});
   }, [exercises]);
   if (!plan || !exercises) return <EmptyPlan />;
-  const dayKey = `${new Date().toISOString().slice(0, 10)}:v${version}:w${week}:d${day}`;
+  const dayKey = `${localDay()}:v${version}:w${week}:d${day}`;
   const completed = user
     ? activity.workouts.some((w) => w.dayKey === dayKey && w.completed)
     : demoWorkout;

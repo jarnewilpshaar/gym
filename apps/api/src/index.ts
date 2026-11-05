@@ -1,4 +1,5 @@
-﻿import { config } from "dotenv";
+import { localDay } from "../../../packages/shared/activity.js";
+import { config } from "dotenv";
 import { fileURLToPath } from "node:url";
 import express, {
   type Request,
@@ -439,7 +440,7 @@ app.post("/api/progress", auth, async (req: AuthRequest, res) => {
     );
 });
 app.get("/api/activity", auth, async (req: AuthRequest, res) => {
-  const dayKey = new Date().toISOString().slice(0, 10);
+  const dayKey = localDay();
   const [workouts, meals] = await Promise.all([
     db.workoutLog.findMany({
       where: { userId: req.userId },
@@ -493,7 +494,7 @@ app.put("/api/meal-log", auth, async (req: AuthRequest, res) => {
     .parse(req.body);
   const where = {
     userId: req.userId!,
-    dayKey: new Date().toISOString().slice(0, 10),
+    dayKey: localDay(),
     mealKey: input.mealKey,
   };
   if (input.checked)

@@ -789,8 +789,7 @@ button:active,
   background: #e9efdf;
   color: #7d985e;
 }
-.week-day:first-child .day-indicator,
-.week-day:nth-child(2) .day-indicator {
+.day-indicator.is-complete {
   background: #6f8d53;
   color: #fff;
 }
@@ -2279,4 +2278,20 @@ button:active,
     width: 160px;
     height: 160px;
   }
+}
+
+.toast {
+  left: 16px;
+  right: 16px;
+  width: fit-content;
+  margin-inline: auto;
+  transform: none;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  animation: spin 1.5s linear infinite;
 }

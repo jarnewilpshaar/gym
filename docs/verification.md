@@ -4,15 +4,17 @@
 
 - TypeScript strict: frontend en backend slagen.
 - ESLint: geen fouten of waarschuwingen.
-- Vier tests slagen: energieformule, macro-energie, calorieondergrens en profiel-/AI-validatie.
+- Zeven tests slagen: energieformule, macro-energie, calorieondergrens, profiel-/AI-validatie, weektotalen, reeksen en datumgrenzen in de Nederlandse tijdzone.
 - Productiebuild slaagt. Grafieken, animatiebibliotheek en validatie zijn in afzonderlijke bundels gesplitst.
 - API `/health` geeft HTTP 200 en meldt expliciet dat de server nog niet is geconfigureerd.
 - Mutatie vanuit een vreemde Origin geeft HTTP 403.
 - Beheer zonder sessie geeft HTTP 401.
 - Vite-pagina geeft HTTP 200.
+- Browser: dashboard en profiel bekeken op desktop en in een smal venster van circa 768 px; geen overlap in de bekeken delen. Nauwkeurige mobiele emulatie en volledige interactiecontrole zijn nog niet betrouwbaar uitgevoerd via de beschikbare browserbesturing.
 - Nederlandse interface en voorbeeldinhoud in `nl.json` nagelezen op spelling; consistente je/jij-toon. Geen verzonnen reviews of abonnementskosten.
 - Initiële PostgreSQL-migratie gegenereerd vanuit Prisma. Seed bevat 63 oefeningen; exacte telling wordt bij uitvoeren getoond.
 - GitHub en GitLab gebruiken dezelfde lint-, test- en buildopdrachten. Synchronisatie gebruikt gewone pushes, zonder force of verwijderingen.
+- Bestaand project `gymgroup2/gym` gekoppeld; de oorspronkelijke GitLab-commit is behouden. `main`, `develop`, `feature/design-system` en `feature/platform` zijn naar beide providers gepusht.
 
 ## Nog te verifiëren
 

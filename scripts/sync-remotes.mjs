@@ -13,6 +13,11 @@ if (!remotes.includes("origin") || !remotes.includes("gitlab"))
 // No force pushes, no automatic merges, no deletion: a divergent remote rejects the push.
 for (const remote of ["origin", "gitlab"]) {
   process.stdout.write(`Synchroniseren: ${branch} → ${remote}\n`);
-  git("push", "--set-upstream", remote, `${branch}:${branch}`);
+  git(
+    "push",
+    ...(remote === "origin" ? ["--set-upstream"] : []),
+    remote,
+    `${branch}:${branch}`,
+  );
 }
 process.stdout.write("Beide remotes zijn bijgewerkt.\n");
